@@ -18,7 +18,7 @@ spec:
       namespace: default
     spec:
       containers:
-        - image: ghcr.io/mustafaguc/kube-app:latest
+        - image: ghcr.io/jaiiye/kube-app:latest
           imagePullPolicy: Always
           name: container-0
           ports:
@@ -28,7 +28,7 @@ spec:
           resources: {}
       dnsPolicy: ClusterFirst
       imagePullSecrets:
-        - name: my-docker-registry
+        - name: kube-app-default-secret
       restartPolicy: Always
 
 ---
@@ -55,9 +55,8 @@ metadata:
   name: kube-app
   namespace: default
 spec:
-  ingressClassName: nginx
   rules:
-    - host: kube-app.example.com
+    - host: app.185-227-153-123.traefik.me
       http:
         paths:
           - backend:
